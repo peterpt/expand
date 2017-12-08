@@ -1,6 +1,8 @@
 # Expand
 A simple script that detects if there is an extended monitor connected to your computer and allow you to extend your desktop .
 
+<img src="https://s17.postimg.org/bn2pohnvj/expand.png" width="55%"></img>
+
 #Requirements
 - bash
 - x11-xsercer-utils
