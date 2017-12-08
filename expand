@@ -1,0 +1,65 @@
+#!/bin/bash
+which xrandr > /dev/null 2>&1
+      if [ "$?" -eq "1" ]; then
+   echo  "Xrandr Missing"
+echo ""
+echo "Try : apt-get install x11-xserver-utils"
+exit 1
+fi 
+disp=$(xrandr | grep "connected" | awk '{print$1}')
+disp1=$(echo $disp | tr " " "\n" | sed -n 1p )
+disp2=$(echo $disp | tr " " "\n" | sed -n 2p )
+if [[ -z $disp1 ]]
+then
+display1="Main Display Not Found"
+echo $display1
+else
+display1="Detected $disp1 on Main computer"
+echo $display1
+fi
+if [[ -z $disp2 ]]
+then
+display2="Secondary Display not Found"
+echo $display2
+else
+display2="Detected $disp2 as a Secondary Monitor"
+echo $display2
+fi
+if [[ -z $disp1 ]]
+then
+echo "Unable to extend a display to an inexistent monitor"
+exit 1
+fi
+if [[ -z $disp2 ]]
+then
+echo "Unable to extend a display to an inexistent monitor"
+exit 1
+fi
+echo ""
+echo "----------------------------------------------"
+echo "|             Menu Options                   |"
+echo "----------------------------------------------"
+echo " 1 - Extended display to the $disp1 monitor "
+echo " 2 - Extended display to the $disp2 monitor "
+echo " 3 - Exit                                   "
+echo "----------------------------------------------"
+echo -n "Choose (1,2 or 3) : "
+read out
+case $out in
+1)
+xrandr --output $disp2 --right-of $disp1
+exit 1
+;;
+2)
+xrandr --output $disp2 --left-of $disp1
+exit 1
+;;
+3)
+exit 1
+;;
+*)
+echo ""
+echo "Invalid Option"
+exit 1
+;;
+esac
