@@ -5,7 +5,7 @@ A simple script that detects if there is an extended monitor connected to your c
 
 #Requirements
 - bash
-- x11-xsercer-utils
+- x11-xserver-utils
 
 # Note
 i did this script for my computers , so dont expect any support to this tool .
