@@ -6,7 +6,7 @@ echo ""
 echo "Try : apt-get install x11-xserver-utils"
 exit 1
 fi 
-disp=$(xrandr | grep "connected" | awk '{print$1}')
+disp=$(xrandr | grep -w "connected" | awk '{print$1}')
 disp1=$(echo $disp | tr " " "\n" | sed -n 1p )
 disp2=$(echo $disp | tr " " "\n" | sed -n 2p )
 if [[ -z $disp1 ]]
